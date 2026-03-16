@@ -1,11 +1,21 @@
 # Catálogo
 Diseñar y crear sus propios componentes visuales (controles de usuario) para construir una interfaz gráfica profesional, aplicando conceptos de empaquetado y reutilización de código.
 ## Programa
-  ```Python
+* Importamos la biblioteca Flet, permitiendo la creación de la interfaz gráfica ysu posterior ejecución a sitio web.
+
+```Python
 import flet as ft
+  ```
 
-# MODELO DE DATOS
-
+* Creamos un arreglo para definir la información especifica de cada producto como:
+  * id.
+  * nombre.
+  * descripción.
+  * precio.
+  * ruta_imagen.
+    
+  Estas se utilizarán para generar las tarjetas del catálogo.
+```Python
 productos = [
     {"id": 1, "nombre": "Totoro", "descripcion": " Peluche de 1 metor de altura, suave y esonjoso.", "precio": 1000, "ruta_imagen": "1.avif"},
     {"id": 2, "nombre": "Gatitos", "descripcion": "Hermosos llaveros de gatitos", "precio": 100, "ruta_imagen": "2.webp"},
@@ -16,56 +26,61 @@ productos = [
     {"id": 7, "nombre": "Cry baby", "descripcion": "Perfume original, sellado.", "precio": 3000, "ruta_imagen": "7.webp"},
     {"id": 8, "nombre": "Van Gogh", "descripcion": "Set de notas adhesivas Noche estrellada.", "precio": 100, "ruta_imagen": "8.webp"},
 ]
-
-# COMPONENTE REUTILIZABLE
-
+```
+* Creamos la clase *ProductoCard* que hereda a *Container* de Flet, es usada para guardar el texto, imágenes y botones de las tarjetas del catálogo.
+```Python
 class ProductoCard(ft.Container):
+  ```
 
-    def __init__(self, producto):
+* Definimos un constructor que recibira al parámetro *producto*, este contendra los datos del producto a mostrar. Cada tarjeta creada contendra un roducto diferente.
+```Python
+ def __init__(self, producto):
+  ```
 
-        super().__init__()
-
+* Esta línea es necesaria para que la clase *ProductoCard* pueda heredar las características de la clase *Container*.
+```Python
+       super().__init__()
+  ```
+  
+* Este fragmento define las características visuales de la tarjeta; su ancho, espacio interno, bordes redondeados y su color de fondo; para que tenga un diseño limpio y uniforme.
+```Python
         self.width = 250
         self.padding = 10
         self.border_radius = 15
         self.bgcolor = ft.Colors.WHITE
-
+  ```
+* Indica que los siguientes elementos van dentro del contenedor, son organizados verticalmete con un espacio de 8 pixeles entre cada elemento.
+```Python
         self.content = ft.Column(
             spacing=8,
             controls=[
-
-                # Imagen
+  ```
+* Creamos el componente *ft.Image* que muestra la ruta de donde se encuebtra la imagen, el tamaño que debe aquirir yfinalmete se ajusto al tamaño anteriro mente definido.
+```Python
                 ft.Image(
                     src=producto["ruta_imagen"],
                     width=230,
                     height=150,
                     fit="cover"
                 ),
-
-                # Nombre
+  ```
+* Ahora creamos el componente *Text* para definir las caraterísticas del nombre del producto como:
+    * Tamaño.
+    * Color.
+    * Fuente.
+```Python
                 ft.Text(
                     producto["nombre"],
                     size=18,
                     color=ft.Colors.BLACK,
                     weight="bold"
                 ),
+  ```
+Esta estructura se utiliza para definir la descripción y el precio del producto, respetando sus características específicas. 
 
-                # Descripción
-                ft.Text(
-                    producto["descripcion"],
-                    size=12,
-                    color=ft.Colors.GREY_700
-                ),
-
-                # Precio
-                ft.Text(
-                    f"${producto['precio']}",
-                    size=16,
-                    weight="bold",
-                    color=ft.Colors.GREEN
-                ),
-
-                # Barra de acciones
+* *Row* define que lo siguinte se organizara horizontalmente dentro del contenedor, en este caso seran el boton con forma de corazón y el de agregar al carrito.
+  * Por el momento, estos botones no realizan niguna acción.
+```Python
                 ft.Row(
                     alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                     controls=[
@@ -74,19 +89,22 @@ class ProductoCard(ft.Container):
                             "Agregar",
                             icon=ft.Icons.SHOPPING_CART
                         )
-                    ]
-                )
-            ]
-        )
+  ```
 
-# INTERFAZ PRINCIPAL
+* Funció principal que representa la página de la aplicación.
+```Python
+  def main(page: ft.Page):
+  ```
 
-def main(page: ft.Page):
-
+* Este fragmento define el titulo de la página, su color y el scroll que nos permitira navegar por ella.
+```Python
     page.title = "Marketplace"
     page.bgcolor = ft.Colors.BLUE_50
     page.scroll = "auto"
+  ```
 
+* Definimo el encabezado dentro de la página; el texto que contendra, su color, tamaño y la fuente.
+```Python
     header = ft.Text(
         "🛒 BAZARE",
         color=ft.Colors.PURPLE,
@@ -94,7 +112,13 @@ def main(page: ft.Page):
         weight="bold"
         
     )
+  ```
 
+* Aquí ocurre lo importante, despues de difinir todas las carateríticas necesarias para la tarjetas, es hora de generar las necesarias segun la cantidad de productos.
+  
+  Para ello, usamos un ciclo for que se detendra una vez recorrada cada producto y, además,
+  ordena las tarjetas segun el tamaño que el usuario defina de la página que las contiene.
+```Python
     tarjetas = []
 
     for producto in productos:
@@ -105,18 +129,26 @@ def main(page: ft.Page):
         wrap=True,
         spacing=20
     )
+  ```
 
+* Añadimos el título y el catálogo a la página.
+```Python
     page.add(
         header,
         catalogo
     )
 
+  ```
 
+* Finalmente ejecutamos la aplicación.
+```Python
 ft.app(
     target=main,
     assets_dir="imagenes"
 )
   ```
+
+             
 ### Diagrama de clases
 ![](evidencia/diagrama}.png)
 
