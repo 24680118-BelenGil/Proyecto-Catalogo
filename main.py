@@ -3,7 +3,7 @@ import flet as ft
 # MODELO DE DATOS
 
 productos = [
-    {"id": 1, "nombre": "Totoro", "descripcion": " Peluche de 1 metor de altura, suave y esonjoso.", "precio": 1000, "ruta_imagen": "1.avif"},
+    {"id": 1, "nombre": "Totoro", "descripcion": "Peluche de 1 metro de altura, suave y esonjoso.", "precio": 1000, "ruta_imagen": "1.jpg"},
     {"id": 2, "nombre": "Gatitos", "descripcion": "Hermosos llaveros de gatitos", "precio": 100, "ruta_imagen": "2.webp"},
     {"id": 3, "nombre": "Libreta", "descripcion": "LIbreta en forma de lapiza, rayada.", "precio": 50, "ruta_imagen": "3.webp"},
     {"id": 4, "nombre": "Capibara", "descripcion":"Mochila de capibara con flor.", "precio": 200, "ruta_imagen": "4.jpg"},
