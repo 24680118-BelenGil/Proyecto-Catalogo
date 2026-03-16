@@ -148,7 +148,8 @@ ft.app(
 )
   ```
 
-             
+[Da click para ver el código completo](./main.py)
+
 ### Diagrama de clases
 ![](evidencia/diagrama}.png)
 
