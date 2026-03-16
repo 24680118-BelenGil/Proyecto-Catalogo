@@ -118,9 +118,11 @@ ft.app(
 )
   ```
 ### Diagrama de clases
+![Diagrama UML](evidencia/diagrama}.png)
 ### Herencia
 ### Gestión de recursos
 ### Resultado
+![Diagrama UML](evidencia/flet.png)
 ## Sitio Web
 Ahora que hemos diseñado nuestro código, lo convertiremos en una página web, para ello necesitamos:
 * Una cuenta en GIthub.
@@ -207,4 +209,4 @@ https://proyecto-catalogo-7p52.onrender.com
 Esto quiere decir que tu catálogo ya es na página web.🥳
 * Un punto importante es que al usar el sevicio gratuito de *Render*,la página puede tardar un poco en cargar.
 ### Resultado
-
+![Diagrama UML](evidencia/web.png)
