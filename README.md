@@ -118,9 +118,91 @@ ft.app(
 )
   ```
 ### Diagrama de clases
-![Diagrama UML](evidencia/diagrama}.png)
+![](evidencia/diagrama}.png)
+
+Representa la estructura del programa y la relación entre la clase principal de la aplicación y la clase personalizada que representa cada producto dentro del catálogo desarrollado con Flet.
+
+En el sistema se pueden identifican tres elementos principales:
+
+**1. Clase Principal de la Aplicación (Page / main)**
+
+La aplicación inicia con la función *main(page: ft.Page)*, que recibe un objeto de tipo *Page*, erepresentando la ventana o página principal de la aplicación, esta utiliza la clase *ProductoCard* para construir la interfaz del catálogo.
+
+Esta clase se encarga de:
+
+* Configurar propiedades de la página como el título, color de fondo y scroll.
+* Crear el encabezado de la interfaz.
+* Recorrer el arreglo de productos.
+* Crear una instancia de ProductoCard para cada producto.
+* Mostrar todas las tarjetas en un contenedor tipo Row.
+
+**2. Clase ProductoCard**
+
+Esta es un componente personalizado que representa visualmente un producto dentro del catálogo.
+Hereda de la clase *Container* las siguintes propiedades de diseño:
+* ancho **(width)**.
+* relleno interno **(padding)**.
+* color de fondo **(bgcolor)**.
+* bordes redondeados **(border_radius)**.
+* contenido interno **(content)**.
+
+Así podemos organizar la información del producto mediante una estructura de tipo Column, que contiene:
+* Una imagen del producto.
+* Nombre.
+* Descripción.
+* Precio
+* Barra de acciones con botones.
+
+Cada vez que se crea una instancia de ProductoCard, se le pasa un objeto producto que contiene la información necesaria para llenar la tarjeta.
+
+**3. Estructura Producto**
+
+Los productos se representan mediante un arreglo llamado *productos*.
+
+Cada producto contiene los siguientes atributos:
+* Id.
+* Nombre.
+* Descripcion.
+* Precio.
+* ruta_imagen.
+
+Estos datos son utilizados por la clase *ProductoCard* para mostrar la información correspondiente en cada tarjeta del catálogo.
+
 ### Herencia
+Para crear el componente personalizado se utilizó herencia a partir de una clase base de Flet.
+  ```Python
+class ProductoCard(ft.Container):
+  ```
+La clase *ProductoCard* hereda la clase *Container* de Flet.
+Que nospermite usar las propiedades como:
+* ancho (width).
+* relleno interno (padding).
+* color de fondo (bgcolor).
+* bordes redondeados (border_radius).
+* contenido interno (content).
+* una imagen (Image).
+* textos (Text).
+* Botones (Row, IconButton, ElevatedButton).
+
+Nos permite construir un componente visual complejo reutilizando la estructura del framework, para no repetir el código,
 ### Gestión de recursos
+Para mostrar imágenes en la aplicación se utilizó un directorio de recursos locales. Creamos una carpeta llamada *imagenes*, dentro de ella se guardaron todas las imagenes utilizadas para el proyecto.
+Para ingresar a ella usamos *assets_dir:*.
+  ```Python
+  ft.app(
+    target=main,
+    assets_dir="imagenes"
+)
+  ```
+Que le indica al framework que todas las imágenes deben buscarse dentro de la carpeta imagenes.
+
+Posteriormente, cada producto referencia su imagen mediante la propiedad:
+  ```Python
+ src=producto["ruta_imagen"],
+)
+  ```
+Así, flet carga automáticamente las imágenes desde el directorio de recursos configurado.
+
 ### Resultado
 ![Diagrama UML](evidencia/flet.png)
 ## Sitio Web
